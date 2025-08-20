@@ -3,7 +3,7 @@ import type { MetadataRoute } from "next"
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const supabase = await createClient()
-  const baseUrl = "https://afflicate.vercel.app"
+  const baseUrl = "https://coutners.shop"
 
   // Static pages
   const staticPages = [
@@ -17,7 +17,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       url: `${baseUrl}/rankings`,
       lastModified: new Date(),
       changeFrequency: "daily" as const,
-      priority: 0.9,
+      priority: 0.8,
     },
   ]
 
@@ -28,7 +28,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       url: `${baseUrl}/category/${category.slug}`,
       lastModified: new Date(category.updated_at),
       changeFrequency: "daily" as const,
-      priority: 0.8,
+      priority: 0.6,
     })) || []
 
   // Category ranking pages
@@ -37,7 +37,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       url: `${baseUrl}/rankings/${category.slug}`,
       lastModified: new Date(category.updated_at),
       changeFrequency: "daily" as const,
-      priority: 0.8,
+      priority: 0.7,
     })) || []
 
   // Product pages
@@ -47,7 +47,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       url: `${baseUrl}/product/${product.id}`,
       lastModified: new Date(product.updated_at),
       changeFrequency: "weekly" as const,
-      priority: 0.6,
+      priority: 0.9,
     })) || []
 
   return [...staticPages, ...categoryPages, ...categoryRankingPages, ...productPages]

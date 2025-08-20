@@ -18,7 +18,7 @@ export const metadata: Metadata = {
     address: false,
     telephone: false,
   },
-  metadataBase: new URL("https://afflicate.vercel.app"),
+  metadataBase: new URL("https://coutners.shop"),
   alternates: {
     canonical: "/",
   },
@@ -26,7 +26,7 @@ export const metadata: Metadata = {
     title: "쿠트너스 - 쿠팡 파트너 상품 전문 큐레이션",
     description:
       "쿠팡의 베스트 상품들을 전문적으로 분석하고 추천합니다. 데이터 기반의 상품 분석과 실시간 할인 정보로 현명한 쇼핑을 도와드립니다.",
-    url: "https://afflicate.vercel.app",
+    url: "https://coutners.shop",
     siteName: "쿠트너스",
     locale: "ko_KR",
     type: "website",
