@@ -24,10 +24,11 @@ export async function generateMetadata({
   params,
 }: CategoryPageProps): Promise<Metadata> {
   const supabase = await createClient();
+  const searchParams = await params;
   const { data: category } = await supabase
     .from("categories")
     .select("*")
-    .eq("slug", params.slug)
+    .eq("slug", searchParams.slug)
     .single();
 
   if (!category) {
@@ -37,7 +38,7 @@ export async function generateMetadata({
   }
 
   return {
-    title: `${category.name} 베스트 상품 추천 | 쿠팡 추천템`,
+    title: `${category.name} 베스트 상품 추천 | 쿠트너스`,
     description: `${category.description} 쿠팡에서 가장 인기 있는 ${category.name} TOP 10 랭킹과 할인 정보를 확인하세요.`,
     keywords: `${category.name}, 쿠팡, 추천, 베스트, 할인, 리뷰`,
     openGraph: {
@@ -53,12 +54,13 @@ export default async function CategoryPage({
   searchParams,
 }: CategoryPageProps) {
   const supabase = await createClient();
-
+  const queryParams = await searchParams;
+  const paramsAwaited = await params;
   // Fetch category info
   const { data: category } = await supabase
     .from("categories")
     .select("*")
-    .eq("slug", params.slug)
+    .eq("slug", paramsAwaited.slug)
     .single();
 
   if (!category) {
@@ -87,18 +89,18 @@ export default async function CategoryPage({
     .eq("is_active", true);
 
   // Apply filters
-  if (searchParams.minPrice) {
-    query = query.gte("sale_price", Number.parseInt(searchParams.minPrice));
+  if (queryParams.minPrice) {
+    query = query.gte("sale_price", Number.parseInt(queryParams.minPrice));
   }
-  if (searchParams.maxPrice) {
-    query = query.lte("sale_price", Number.parseInt(searchParams.maxPrice));
+  if (queryParams.maxPrice) {
+    query = query.lte("sale_price", Number.parseInt(queryParams.maxPrice));
   }
-  if (searchParams.brand) {
-    query = query.eq("brand", searchParams.brand);
+  if (queryParams.brand) {
+    query = query.eq("brand", queryParams.brand);
   }
 
   // Apply sorting
-  switch (searchParams.sort) {
+  switch (queryParams.sort) {
     case "price-low":
       query = query.order("sale_price", { ascending: true });
       break;

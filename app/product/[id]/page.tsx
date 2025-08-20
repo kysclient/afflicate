@@ -17,6 +17,7 @@ export async function generateMetadata({
   params,
 }: ProductPageProps): Promise<Metadata> {
   const supabase = await createClient();
+  const searchParams = await params
   const { data: product } = await supabase
     .from("products")
     .select(
@@ -28,7 +29,7 @@ export async function generateMetadata({
       )
     `
     )
-    .eq("id", params.id)
+    .eq("id", searchParams.id)
     .single();
 
   if (!product) {
@@ -43,7 +44,7 @@ export async function generateMetadata({
   };
 
   return {
-    title: `${product.title} | 쿠팡 추천템`,
+    title: `${product.title} | 쿠트너스`,
     description: `${product.description || product.title} 가격: ${formatPrice(
       product.sale_price
     )}원. 평점 ${product.rating}/5 (${formatPrice(
@@ -68,6 +69,7 @@ export async function generateMetadata({
 
 export default async function ProductPage({ params }: ProductPageProps) {
   const supabase = await createClient();
+  const searchParams = await params
 
   // Fetch product details
   const { data: product } = await supabase
@@ -81,7 +83,7 @@ export default async function ProductPage({ params }: ProductPageProps) {
       )
     `
     )
-    .eq("id", params.id)
+    .eq("id", searchParams.id)
     .single();
 
   if (!product) {
