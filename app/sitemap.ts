@@ -3,7 +3,7 @@ import type { MetadataRoute } from "next"
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const supabase = await createClient()
-  const baseUrl = "https://coupang-recommend.vercel.app"
+  const baseUrl = "https://afflicate.vercel.app"
 
   // Static pages
   const staticPages = [
