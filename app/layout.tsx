@@ -1,3 +1,4 @@
+import { Analytics } from '@vercel/analytics/next';
 import type React from "react";
 import type { Metadata } from "next";
 import { GeistSans } from "geist/font/sans";
@@ -67,6 +68,7 @@ html {
       </head>
       <body className="min-h-screen w-full m-0 p-0 antialiased">
         <div className="w-full min-h-screen mx-auto">{children}</div>
+        <Analytics />
       </body>
     </html>
   );
