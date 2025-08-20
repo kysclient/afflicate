@@ -6,6 +6,7 @@
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
+  --font-sans: var(--font-gmarket-sans);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
   --color-sidebar-ring: var(--sidebar-ring);
@@ -116,35 +117,45 @@
   * {
     @apply border-border outline-ring/50;
   }
+
   body {
     @apply bg-background text-foreground;
+    font-family: var(--font-gmarket-sans), sans-serif;
     font-feature-settings: "cv02", "cv03", "cv04", "cv11";
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
   }
-  
+
   /* 모바일 최적화된 텍스트 크기 및 간격 */
   @media (max-width: 640px) {
     html {
       font-size: 14px;
     }
-    
-    h1, h2, h3, h4, h5, h6 {
+
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
       line-height: 1.2;
     }
-    
-    p, div, span {
+
+    p,
+    div,
+    span {
       line-height: 1.5;
     }
   }
-  
+
   /* 고해상도 디스플레이 최적화 */
-  @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+  @media (-webkit-min-device-pixel-ratio: 2),
+  (min-resolution: 192dpi) {
     * {
       -webkit-font-smoothing: antialiased;
     }
   }
-  
+
   /* 텍스트 가독성 향상 */
   .line-clamp-2 {
     display: -webkit-box;
@@ -153,7 +164,7 @@
     overflow: hidden;
     text-overflow: ellipsis;
   }
-  
+
   .line-clamp-3 {
     display: -webkit-box;
     -webkit-line-clamp: 3;

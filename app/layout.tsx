@@ -4,6 +4,30 @@ import type { Metadata } from "next";
 import { GeistSans } from "geist/font/sans";
 import { GeistMono } from "geist/font/mono";
 import "./globals.css";
+import localFont from 'next/font/local';
+
+const gmarketSans = localFont({
+  src: [
+    {
+      path: '../public/fonts/GmarketSansTTF/GmarketSansTTFLight.ttf',
+      weight: '300',
+      style: 'normal',
+    },
+    {
+      path: '../public/fonts/GmarketSansTTF/GmarketSansTTFMedium.ttf',
+      weight: '500',
+      style: 'normal',
+    },
+    {
+      path: '../public/fonts/GmarketSansTTF/GmarketSansTTFBold.ttf',
+      weight: '700',
+      style: 'normal',
+    },
+  ],
+  display: 'swap', // 폰트 로드 전 fallback 폰트 사용
+  variable: '--font-gmarket-sans', // CSS 변수로 사용 가능
+});
+
 
 export const metadata: Metadata = {
   title: "쿠트너스 - 쿠팡 파트너 상품 추천 플랫폼",
@@ -56,17 +80,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="ko">
-      <head>
-        <style>{`
-html {
-  font-family: ${GeistSans.style.fontFamily};
-  --font-sans: ${GeistSans.variable};
-  --font-mono: ${GeistMono.variable};
-}
-        `}</style>
-      </head>
-      <body className="min-h-screen w-full m-0 p-0 antialiased">
+    <html lang="ko" className={gmarketSans.variable}>
+      <body className="min-h-screen w-full m-0 p-0 font-gmarket antialiased">
         <div className="w-full min-h-screen mx-auto">{children}</div>
         <Analytics />
       </body>
